@@ -18,9 +18,10 @@ class statefull
   public $data = [];
   public $rev = null;
   
-  public $result = null;
+  public $results = [];
+  public $lock_results = false;
   
-  public $mutable = true;
+  public $auto_memorize_parameters = true;
   
   public function set_scheme( $in ) { $this->scheme = $in; return $this; }
   public function set_host( $in ) { $this->host = $in; return $this; }
@@ -32,7 +33,7 @@ class statefull
   public function set_queries( $in ) { $this->queries = $in; return $this; }
   public function set_data( $in ) { $this->data = $in; return $this; }
   
-  public function set_mutable( $in ) { $this->mutable = $in; return $this; }
+  public function set_auto_memorize_parameters( $in ) { $this->auto_memorize_parameters = $in; return $this; }
   
   public function get_version
   ( $port = null
@@ -40,7 +41,7 @@ class statefull
   , $scheme = null
   )
   {
-    if ( $this->mutable )
+    if ( $this->auto_memorize_parameters )
     {
       if ( ! is_null( $port ) )
         $this->port = $port;
@@ -50,11 +51,14 @@ class statefull
         $this->scheme = $scheme;
     }
     
-    $this->result = get_version
+    array_push
+    ( $this->result
+    , get_version
       ( $this->scheme
       , $this->host
       , $this->port
-      );
+      )
+    );
     
     return $this;
   }
@@ -66,7 +70,7 @@ class statefull
   , $scheme = null
   )
   {
-    if ( $this->mutable )
+    if ( $this->auto_memorize_parameters )
     {
       if ( ! is_null( $database ) )
         $this->database = $database;
@@ -78,12 +82,15 @@ class statefull
         $this->scheme = $scheme;
     }
     
-    $this->result = is_exists_database
+    array_push
+    ( $this->result
+    , is_exists_database
       ( $this->scheme
       , $this->host
       , $this->port
       , $this->database
-      );
+      )
+    );
     
     return $this;
   }
@@ -95,7 +102,7 @@ class statefull
   , $scheme = null
   )
   {
-    if ( $this->mutable )
+    if ( $this->auto_memorize_parameters )
     {
       if ( ! is_null( $database ) )
         $this->database = $database;
@@ -107,12 +114,15 @@ class statefull
         $this->scheme = $scheme;
     }
     
-    $this->result = create_database
+    array_push
+    ( $this->result
+    , create_database
       ( $this->scheme
       , $this->host
       , $this->port
       , $this->database
-      );
+      )
+    );
     
     return $this;
   }
@@ -124,7 +134,7 @@ class statefull
   , $scheme = null
   )
   {
-    if ( $this->mutable )
+    if ( $this->auto_memorize_parameters )
     {
       if ( ! is_null( $database ) )
         $this->database = $database;
@@ -136,12 +146,15 @@ class statefull
         $this->scheme = $scheme;
     }
     
-    $this->result = delete_database
+    array_push
+    ( $this->result
+    , delete_database
       ( $this->scheme
       , $this->host
       , $this->port
       , $this->database
-      );
+      )
+    );
     
     return $this;
   }
@@ -154,7 +167,7 @@ class statefull
   , $scheme = null
   )
   {
-    if ( $this->mutable )
+    if ( $this->auto_memorize_parameters )
     {
       if ( ! is_null( $document ) )
         $this->document = $document;
@@ -168,13 +181,16 @@ class statefull
         $this->scheme = $scheme;
     }
     
-    $this->result = is_exists_document
+    array_push
+    ( $this->result
+    , is_exists_document
       ( $this->scheme
       , $this->host
       , $this->port
       , $this->database
       , $this->document
-      );
+      )
+    );
     
     return $this;
   }
@@ -187,7 +203,7 @@ class statefull
   , $scheme = null
   )
   {
-    if ( $this->mutable )
+    if ( $this->auto_memorize_parameters )
     {
       if ( ! is_null( $document ) )
         $this->document = $document;
@@ -201,13 +217,16 @@ class statefull
         $this->scheme = $scheme;
     }
     
-    $this->result = get_document
+    array_push
+    ( $this->result
+    , get_document
       ( $this->scheme
       , $this->host
       , $this->port
       , $this->database
       , $this->document
-      );
+      )
+    );
     
     return $this;
   }
@@ -221,7 +240,7 @@ class statefull
   , $scheme = null
   )
   {
-    if ( $this->mutable )
+    if ( $this->auto_memorize_parameters )
     {
       if ( ! is_null( $data ) )
         $this->data = $data;
@@ -237,14 +256,17 @@ class statefull
         $this->scheme = $scheme;
     }
     
-    $this->result = create_document
+    array_push
+    ( $this->result
+    , create_document
       ( $this->scheme
       , $this->host
       , $this->port
       , $this->database
       , $this->document
       , $this->data
-      );
+      )
+    );
     
     return $this;
   }
@@ -257,7 +279,7 @@ class statefull
   , $scheme = null
   )
   {
-    if ( $this->mutable )
+    if ( $this->auto_memorize_parameters )
     {
       if ( ! is_null( $document ) )
         $this->document = $document;
@@ -274,14 +296,17 @@ class statefull
         $this->scheme = $scheme;
     }
     
-    $this->result = delete_document
+    array_push
+    ( $this->result
+    , delete_document
       ( $this->scheme
       , $this->host
       , $this->port
       , $this->database
       , $this->document
       , $this->rev
-      );
+      )
+    );
     
     return $this;
   }
@@ -295,7 +320,7 @@ class statefull
   , $scheme = null
   )
   {
-    if ( $this->mutable )
+    if ( $this->auto_memorize_parameters )
     {
       if ( ! is_null( $data ) )
         $this->data = $data;
@@ -311,14 +336,17 @@ class statefull
         $this->scheme = $scheme;
     }
     
-    $this->result = update_document
+    array_push
+    ( $this->result
+    , update_document
       ( $this->scheme
       , $this->host
       , $this->port
       , $this->database
       , $this->document
       , $data
-      );
+      )
+    );
     
     return $this;
   }
@@ -332,7 +360,7 @@ class statefull
   , $scheme = null
   )
   {
-    if ( $this->mutable )
+    if ( $this->auto_memorize_parameters )
     {
       if ( ! is_null( $attachment ) )
         $this->attachment = $attachment;
@@ -348,14 +376,18 @@ class statefull
         $this->scheme = $scheme;
     }
     
-    $this->result = is_exists_attachment
+    array_push
+    ( $this->result
+    , is_exists_attachment
       ( $this->scheme
       , $this->host
       , $this->port
       , $this->database
       , $this->document
       , $this->attachment
-      );
+      )
+    );
+    
     return $this;
   }
   
@@ -368,7 +400,7 @@ class statefull
   , $scheme = null
   )
   {
-    if ( $this->mutable )
+    if ( $this->auto_memorize_parameters )
     {
       if ( ! is_null( $attachment ) )
         $this->attachment = $attachment;
@@ -384,14 +416,18 @@ class statefull
         $this->scheme = $scheme;
     }
     
-    $this->result = get_attachment
+    array_push
+    ( $this->result
+    , get_attachment
       ( $this->scheme
       , $this->host
       , $this->port
       , $this->database
       , $this->document
       , $this->attachment
-      );
+      )
+    );
+    
     return $this;
   }
   
@@ -407,7 +443,7 @@ class statefull
   , $scheme = null
   )
   {
-    if ( $this->mutable )
+    if ( $this->auto_memorize_parameters )
     {
       if ( ! is_null( $attachment ) )
         $this->attachment = $attachment;
@@ -423,7 +459,9 @@ class statefull
         $this->scheme = $scheme;
     }
     
-    $this->result = attach_document
+    array_push
+    ( $this->result
+    , attach_document
       ( $this->scheme
       , $this->host
       , $this->port
@@ -432,7 +470,9 @@ class statefull
       , $local_file_path
       , $attachment
       , $rev
-      );
+      )
+    );
+    
     return $this;
   }
   
@@ -446,7 +486,7 @@ class statefull
   , $scheme = null
   )
   {
-    if ( $this->mutable )
+    if ( $this->auto_memorize_parameters )
     {
       if ( ! is_null( $attachment ) )
         $this->attachment = $attachment;
@@ -463,7 +503,9 @@ class statefull
         $this->scheme = $scheme;
     }
     
-    $this->result = detach_document
+    array_push
+    ( $this->result
+    , detach_document
       ( $this->scheme
       , $this->host
       , $this->port
@@ -471,7 +513,9 @@ class statefull
       , $this->document
       , $this->attachment
       , $rev
-      );
+      )
+    );
+    
     return $this;
   }
   
@@ -483,7 +527,7 @@ class statefull
   , $scheme = null
   )
   {
-    if ( $this->mutable )
+    if ( $this->auto_memorize_parameters )
     {
       if ( ! is_null( $queries ) )
         $this->queries = $queries;
@@ -497,19 +541,23 @@ class statefull
         $this->scheme = $scheme;
     }
     
-    $this->result = all_docs
+    array_push
+    ( $this->result
+    , all_docs
       ( $this->scheme
       , $this->host
       , $this->port
       , $this->database
       , $queries
-      );
+      )
+    );
+    
     return $this;
   }
   
   public function all_docs_include_docs( $queries = null )
   {
-    if ( $this->mutable )
+    if ( $this->auto_memorize_parameters )
     {
       if ( ! is_null( $queries ) )
         $this->queries = $queries;
@@ -523,13 +571,17 @@ class statefull
         $this->scheme = $scheme;
     }
     
-    $this->result = all_docs_include_docs
+    array_push
+    ( $this->result
+    , all_docs_include_docs
       ( $this->scheme
       , $this->host
       , $this->port
       , $this->database
       , $queries
-      );
+      )
+    );
+    
     return $this;
   }
 }

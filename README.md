@@ -193,24 +193,29 @@ $rev_and_header_infos = \usagi\couchdb\is_exists_attachment( 'http', '127.0.0.1'
 file_put_contents( 'somthing.png', \usagi\couchdb\get_attachment( 'http', '127.0.0.1', 5984, 'test2', 'd1', 'something.png' ), LOCK_EX );
 ```
 
-### 2.2. statefull library // chain statefull wrapping version for easy to use
+### 2.2. statefull library // function chain, auto memorize parameters, auto result queueing
 
 ```php
 $c1 = new \usagi\couchdb\statefull;
 
-$c1 -> set_scheme( 'http' )
-    -> set_host( '127.0.0.1' )
-    -> set_port( 5984 )
+// save parameters implicit
+// and functions are chainable
+// and results are auto stacked/queued and exportable anythime!
+
+$c1 -> set_auto_memorize_parameters( true ) // enabling auto memorize parameters, default is true
+    -> get_document( 'document1', 'database1', 5984, '127.0.0.1', 'http' ) // queue result to results[ 0 ]
+    -> shift_result( $x ) // move results[ 0 ] to $x ( remove results[ 0 ] and data be set to $x )
+    -> get_document( 'document2' ) // result[ 0 ]
+    -> get_attachment( 'attachemnet2-1.png' ) // result[ 1 ]
+    -> get_document( $x['foobar'] ) // result[ 2 ]
+    -> peek_result( 0, $y ) // copy result[ 0 ] to $y ( result[ 0 ] be not delete )
+    -> get_document( $x['foobar'], 'databse2' ) // result[ 3 ]
+    -> get_document( $x['foobar'], 'databse3' ) // result[ 4 ]
+    -> get_document( $x['foobar'], 'databse4' ) // result[ 5 ]
     ;
 
-$version_infos = $c1->get_version();
-
-$c1 -> set_database( 'test' ) -> create_database();
-$c1 -> set_document( 'd1' ) -> create_document();
-$c1 -> set_attachment( 'somthing.png' ) -> attach_document( 'somthing.png' );
-$c1 -> update_document( { "foo": "bar" } );
-$c1 -> set_document( 'd2' ) -> create_document();
-$c1 -> delete_document();
+// this will be out 5 results
+var_dump( $c->results )
 ```
 
 # License
