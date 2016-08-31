@@ -73,7 +73,7 @@ $response = \usagi\http\request( 'http://example.net', 'POST', $data ) );
 ```php
 $response = \usagi\http\request
   ( 'http://example.net'
-  , 'GET'
+  , 'PUT'
   , $data
   , [ 'x-my-custom-request-header-1' => 'custom value 1'
     , 'x-my-custom-request-header-2' => 'custom value 2'
