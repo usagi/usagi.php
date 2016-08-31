@@ -54,18 +54,31 @@ array(3) {
 }
 ```
 
-#### HEAD, PUT, POST, DELETE, ...
+#### HEAD, DELETE, ...
 
 ```php
-$head_result = \usagi\http\request( 'http://example.net', 'HEAD' ) );
-$head_result = \usagi\http\request( 'http://example.net', 'DELETE' ) );
+$response = \usagi\http\request( 'http://example.net', 'HEAD' ) );
+$response = \usagi\http\request( 'http://example.net', 'DELETE' ) );
 ```
 
 #### PUT, POST, ...
 
 ```php
-$head_result = \usagi\http\request( 'http://example.net', 'PUT' , $data ) );
-$head_result = \usagi\http\request( 'http://example.net', 'POST', $data ) );
+$response = \usagi\http\request( 'http://example.net', 'PUT' , $data ) );
+$response = \usagi\http\request( 'http://example.net', 'POST', $data ) );
+```
+
+#### add custom headers
+
+```php
+$response = \usagi\http\request
+  ( 'http://example.net'
+  , 'GET'
+  , $data
+  , [ 'x-my-custom-request-header-1' => 'custom value 1'
+    , 'x-my-custom-request-header-2' => 'custom value 2'
+    ]
+  );
 ```
 
 #### with convinient stateless helpers
