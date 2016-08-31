@@ -23,8 +23,8 @@ function make_query( $queries = [] )
   foreach ( $queries as $key => $value )
   {
     $element = urlencode( $key );
-    if ( is_string( $value ) || is_int( $value ) || is_float( $value ) )
-      $element .= '='.urlencode( $value );
+    if ( is_scalar( $value ) )
+      $element .= '='.urlencode( var_export( $value, true ) );
     array_push( $intermediate, $element );
   }
   
