@@ -315,3 +315,34 @@ function detach_document( $scheme, $host, $port, $database, $document, $attachme
   
   return \usagi\http\is_succeeded( $r );
 }
+
+function all_docs( $scheme, $host, $port, $database, $queries = [] )
+{
+  $r = \usagi\http\request
+    ( \usagi\http\make_url
+      ( $scheme
+      , $host
+      , $port
+      , [ $database, '_all_docs' ]
+      , $queries
+      )
+    );
+  
+  return extract_decoded_content_if_status_code_was_succeeded( $r );
+}
+
+function all_docs_include_docs( $scheme, $host, $port, $database, $queries = [] )
+{
+  $queries[ 'include_docs' ] = true;
+  $r = \usagi\http\request
+    ( \usagi\http\make_url
+      ( $scheme
+      , $host
+      , $port
+      , [ $database, '_all_docs' ]
+      , $queries
+      )
+    );
+  
+  return extract_decoded_content_if_status_code_was_succeeded( $r );
+}
