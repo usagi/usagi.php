@@ -184,7 +184,7 @@ $id_and_rev = \usagi\couchdb\update_document( 'http', '127.0.0.1', 5984, 'test2'
 $is_succeeded = \usagi\couchdb\attach_document( 'http', '127.0.0.1', 5984, 'test2', 'd1', 'somthing.png' );
 
 // detach
-$is_succeeded = \usagi\couchdb\detach_document( 'http', '127.0.0.1', 5984, 'test2', 'd1', 'gondwana-logo-white-120x120.png' ) );
+$is_succeeded = \usagi\couchdb\detach_document( 'http', '127.0.0.1', 5984, 'test2', 'd1', 'something.png' ) );
 
 // attachment header infos with rev included or FALSE
 $rev_and_header_infos = \usagi\couchdb\is_exists_attachment( 'http', '127.0.0.1', 5984, 'test2', 'd1', 'something.png' ) );
