@@ -1,7 +1,8 @@
-{ "name": "usagi/usagi"
+{ "name": "usagi/usagi.php"
 , "autoload":
   { "files":
     [ "source/all.php"
     ]
   }
+, "license": "MIT"
 }
