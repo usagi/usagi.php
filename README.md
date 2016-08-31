@@ -2,10 +2,24 @@
 
 # Features
 
+## 0. include all features in the library
+
+```php
+// for direct downloaded
+require_once 'usagi.php/source/http.php'
+// or, for composer
+//require_once 'vendor/usagi/usagi.php/source/all.php'
+```
+
+note 1: this library refused to abide by PSR, thus set to 'files' mode to the composer.
+note 2: you can include indivisual part of this library.
+
 ## 1. http wrapper
 
 ```php
+// for direct downloaded
 require_once 'usagi.php/source/http.php'
+// or, for composer
 ```
 
 ### 1.1. http library // stateles, simple and convinient
@@ -118,6 +132,8 @@ and etc.
 
 ```php
 require_once 'usagi.php/source/couchdb.php'
+// or, for composer
+//require_once 'vendor/usagi/usagi.php/source/couchdb.php'
 ```
 
 ### 2.1. stateless library // for a simple usecases
@@ -194,6 +210,12 @@ file_put_contents( 'somthing.png', \usagi\couchdb\get_attachment( 'http', '127.0
 ```
 
 ### 2.2. statefull library // function chain, auto memorize parameters, auto result queueing
+
+```php
+require_once 'usagi.php/source/couchdb/statefull.php'
+// or, for composer
+//require_once 'vendor/usagi/usagi.php/source/couchdb/statefull.php'
+```
 
 ```php
 $c1 = new \usagi\couchdb\statefull;
