@@ -1,0 +1,7 @@
+{ "name": "usagi/usagi"
+, "autoload":
+  { "files":
+    [ "source/all.php"
+    ]
+  }
+}
