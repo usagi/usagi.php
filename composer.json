@@ -5,4 +5,22 @@
     ]
   }
 , "license": "MIT"
+, "description": "Usagi's PHP library; http, couchdb"
+, "type": "library"
+, "keywords":
+  [ "usagi"
+  , "http"
+  , "CouchDB"
+  ]
+, "authors":
+  [ { "name": "Usagi Ito"
+    , "email": "usagi@usagi.network"
+    , "homepage": "http://usagi.network"
+    , "role": "C++er"
+    }
+  ]
+, "support":
+  { "issues": "https://github.com/usagi/usagi.php/issues"
+  , "source": "https://github.com/usagi/usagi.php/"
+  }
 }
