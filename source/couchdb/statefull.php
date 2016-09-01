@@ -52,7 +52,7 @@ class statefull
     }
     
     array_push
-    ( $this->result
+    ( $this->results
     , get_version
       ( $this->scheme
       , $this->host
@@ -83,7 +83,7 @@ class statefull
     }
     
     array_push
-    ( $this->result
+    ( $this->results
     , is_exists_database
       ( $this->scheme
       , $this->host
@@ -115,7 +115,7 @@ class statefull
     }
     
     array_push
-    ( $this->result
+    ( $this->results
     , create_database
       ( $this->scheme
       , $this->host
@@ -147,7 +147,7 @@ class statefull
     }
     
     array_push
-    ( $this->result
+    ( $this->results
     , delete_database
       ( $this->scheme
       , $this->host
@@ -182,7 +182,7 @@ class statefull
     }
     
     array_push
-    ( $this->result
+    ( $this->results
     , is_exists_document
       ( $this->scheme
       , $this->host
@@ -218,7 +218,7 @@ class statefull
     }
     
     array_push
-    ( $this->result
+    ( $this->results
     , get_document
       ( $this->scheme
       , $this->host
@@ -257,7 +257,7 @@ class statefull
     }
     
     array_push
-    ( $this->result
+    ( $this->results
     , create_document
       ( $this->scheme
       , $this->host
@@ -297,7 +297,7 @@ class statefull
     }
     
     array_push
-    ( $this->result
+    ( $this->results
     , delete_document
       ( $this->scheme
       , $this->host
@@ -337,7 +337,7 @@ class statefull
     }
     
     array_push
-    ( $this->result
+    ( $this->results
     , update_document
       ( $this->scheme
       , $this->host
@@ -377,7 +377,7 @@ class statefull
     }
     
     array_push
-    ( $this->result
+    ( $this->results
     , is_exists_attachment
       ( $this->scheme
       , $this->host
@@ -417,7 +417,7 @@ class statefull
     }
     
     array_push
-    ( $this->result
+    ( $this->results
     , get_attachment
       ( $this->scheme
       , $this->host
@@ -460,7 +460,7 @@ class statefull
     }
     
     array_push
-    ( $this->result
+    ( $this->results
     , attach_document
       ( $this->scheme
       , $this->host
@@ -504,7 +504,7 @@ class statefull
     }
     
     array_push
-    ( $this->result
+    ( $this->results
     , detach_document
       ( $this->scheme
       , $this->host
@@ -542,7 +542,7 @@ class statefull
     }
     
     array_push
-    ( $this->result
+    ( $this->results
     , all_docs
       ( $this->scheme
       , $this->host
@@ -572,7 +572,7 @@ class statefull
     }
     
     array_push
-    ( $this->result
+    ( $this->results
     , all_docs_include_docs
       ( $this->scheme
       , $this->host
