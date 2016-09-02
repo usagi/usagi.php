@@ -584,4 +584,19 @@ class statefull
     
     return $this;
   }
+  
+  public function shift_results()
+  {
+    if ( empty( $this->results ) )
+      return FALSE;
+    return array_shift( $this->results );
+  }
+  
+  public function pop_results()
+  {
+    if ( empty( $this->results ) )
+      return FALSE;
+    return array_pop( $this->results );
+  }
+  
 }
