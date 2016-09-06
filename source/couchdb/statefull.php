@@ -555,7 +555,13 @@ class statefull
     return $this;
   }
   
-  public function all_docs_include_docs( $queries = null )
+  public function all_docs_include_docs
+  ( $queries = null
+  , $database = null
+  , $port = null
+  , $host = null
+  , $scheme = null
+  )
   {
     if ( $this->auto_memorize_parameters )
     {
