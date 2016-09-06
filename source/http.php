@@ -24,7 +24,7 @@ function make_query( $queries = [] )
   {
     $element = urlencode( $key );
     if ( is_scalar( $value ) )
-      $element .= '='.urlencode( var_export( $value, true ) );
+      $element .= '='.urlencode( is_string( $value ) ? $value : var_export( $value, true ) );
     array_push( $intermediate, $element );
   }
   
