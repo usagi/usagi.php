@@ -346,3 +346,19 @@ function all_docs_include_docs( $scheme, $host, $port, $database, $queries = [] 
   
   return extract_decoded_content_if_status_code_was_succeeded( $r );
 }
+
+function get_view( $scheme, $host, $port, $database, $design, $view, $queries = [] )
+{
+  $r = \usagi\http\request
+    ( \usagi\http\make_url
+      ( $scheme
+      , $host
+      , $port
+      , [ $database, '_design', $design, '_view', $view ]
+      , $queries
+      )
+    );
+  
+  return extract_decoded_content_if_status_code_was_succeeded( $r );
+}
+

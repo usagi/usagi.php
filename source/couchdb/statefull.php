@@ -435,7 +435,6 @@ class statefull
   ( $local_file_path
   , $attachment = null
   , $rev = null
-  
   , $document = null
   , $database = null
   , $port = null
@@ -478,7 +477,6 @@ class statefull
   
   public function detach_document
   ( $attachment = null, $rev = null
-  
   , $document = null
   , $database = null
   , $port = null
@@ -584,6 +582,50 @@ class statefull
       , $this->host
       , $this->port
       , $this->database
+      , $queries
+      )
+    );
+    
+    return $this;
+  }
+  
+  public function get_view
+  ( $queries = null
+  , $view = null
+  , $design = null
+  , $database = null
+  , $port = null
+  , $host = null
+  , $scheme = null
+  )
+  {
+    if ( $this->auto_memorize_parameters )
+    {
+      if ( ! is_null( $queries ) )
+        $this->queries = $queries;
+      if ( ! is_null( $view ) )
+        $this->view = $view;
+      if ( ! is_null( $design ) )
+        $this->design = $design;
+      if ( ! is_null( $database ) )
+        $this->database = $database;
+      if ( ! is_null( $port ) )
+        $this->port = $port;
+      if ( ! is_null( $host ) )
+        $this->host = $host;
+      if ( ! is_null( $scheme ) )
+        $this->scheme = $scheme;
+    }
+    
+    array_push
+    ( $this->results
+    , get_view
+      ( $this->scheme
+      , $this->host
+      , $this->port
+      , $this->database
+      , $this->design
+      , $this->view
       , $queries
       )
     );
